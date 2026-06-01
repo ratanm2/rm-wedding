@@ -1,78 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<html><head><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ratan & Apurva</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
-</head>
+<link rel="stylesheet" href="style.css"></head>
 <body>
+<section class="screen center">
+<h1>Ratan & Apurva</h1><p>Tap below to begin</p>
+<button onclick="show('scratch')">Begin Experience</button>
+</section>
 
-<section class="screen hero">
-<div class="glass">
-<div class="mono">R & A</div>
+<section id="scratch" class="screen hidden center">
+<h2>Reveal</h2><p>Scratch to discover the date</p>
+<div class="date">19 June 2026</div>
+<button onclick="show('invite')">Continue</button>
+</section>
+
+<section id="invite" class="screen hidden center">
+<div class="curtain left"></div><div class="curtain right"></div>
+<h2>Together with their families</h2>
 <h1>Ratan & Apurva</h1>
-<p>19 June 2026 • 12:28 PM</p>
-<a href="#save" class="btn">Begin Invitation</a>
-</div>
+<p>request the pleasure of your company</p>
+<button onclick="openCurtain()">Open Invitation</button>
+<button onclick="show('countdown')">Next</button>
 </section>
 
-<section id="save" class="screen reveal">
-<h2>Save The Date</h2>
-<p>19 June 2026</p>
-<p>12:28 PM</p>
+<section id="countdown" class="screen hidden center">
+<h2>Countdown</h2>
+<div id="cd"></div>
+<button onclick="show('haldi')">Next</button>
 </section>
 
-<section class="screen photo reveal">
-<img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1200" alt="Placeholder Couple">
-</section>
-
-<section class="screen reveal">
-<h2>Invitation</h2>
-<p>Together with their families, Ratan and Apurva request the pleasure of your company at the celebration of their marriage.</p>
-</section>
-
-<section class="screen reveal">
-<h2>Counting Down To Forever</h2>
-<div class="countdown">
-<div><span id="d">0</span><small>Days</small></div>
-<div><span id="h">0</span><small>Hours</small></div>
-<div><span id="m">0</span><small>Minutes</small></div>
-<div><span id="s">0</span><small>Seconds</small></div>
-</div>
-</section>
-
-<section class="screen reveal">
+<section id="haldi" class="screen hidden center">
 <h2>Pre‑Wedding Celebration</h2>
 <p>18 June 2026 • Evening</p>
-<p>Satyavijay Convention Multipurpose Hall</p>
+<a href="https://maps.app.goo.gl/J47BqnxoFqXGZL2NA?g_st=ic">View Location</a>
+<button onclick="show('wedding')">Next</button>
 </section>
 
-<section class="screen reveal">
+<section id="wedding" class="screen hidden center">
 <h2>Wedding Ceremony</h2>
-<p>19 June 2026</p>
-<p>Muhurtham • 12:28 PM</p>
-<p>Satyavijay Convention Multipurpose Hall</p>
+<p>19 June 2026 • 12:28 PM</p>
+<a href="https://maps.app.goo.gl/J47BqnxoFqXGZL2NA?g_st=ic">View Location</a>
+<button onclick="show('venue')">Next</button>
 </section>
 
-<section class="screen reveal">
-<h2>Venue</h2>
+<section id="venue" class="screen hidden center">
+<h2>The Celebration Will Take Place At</h2>
+<div class="sketch">🏛️</div>
+<h3>Satyavijay Convention Multipurpose Hall</h3>
 <p>Solapur, Maharashtra</p>
-<a class="btn" target="_blank" href="https://maps.app.goo.gl/J47BqnxoFqXGZL2NA?g_st=ic">Open Maps</a>
+<button onclick="show('thanks')">Next</button>
 </section>
 
-<section class="screen reveal">
-<h2>RSVP</h2>
-<a class="btn" target="_blank" href="https://wa.me/917741030079">Confirm Attendance</a>
-</section>
-
-<section class="screen reveal">
+<section id="thanks" class="screen hidden center">
 <h2>Thank You</h2>
 <p>Your presence and blessings will make our celebration complete.</p>
-<p>— Ratan & Apurva</p>
 </section>
-
 <script src="script.js"></script>
-</body>
-</html>
+</body></html>
