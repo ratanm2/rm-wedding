@@ -1,0 +1,15 @@
+
+body{margin:0;background:#f7f3ec;color:#3a3326;font-family:'Cormorant Garamond',serif}
+.panel{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px;text-align:center}
+.inner{max-width:700px;animation:fade 1.2s ease}
+.hero{background:linear-gradient(180deg,#faf7f0,#efe7d4)}
+.mono{font-size:60px;color:#b08d57;letter-spacing:8px}
+h1,h2{font-family:'Playfair Display',serif;color:#b08d57}
+h1{font-size:56px} h2{font-size:42px}
+p{font-size:26px;line-height:1.5}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.countdown div{border:1px solid #cdb27b;padding:20px;border-radius:18px;background:white}
+.countdown span{display:block;font-size:38px;color:#b08d57}
+.btn{display:inline-block;padding:14px 28px;background:#b08d57;color:white;text-decoration:none;border-radius:30px}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@media(max-width:768px){h1{font-size:40px}h2{font-size:32px}p{font-size:22px}.countdown{grid-template-columns:repeat(2,1fr)}}
