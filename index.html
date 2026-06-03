@@ -1,59 +1,99 @@
 <!DOCTYPE html>
-<html><head><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ratan & Apurva</title>
-<link rel="stylesheet" href="style.css"></head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
 <body>
-<section class="screen center">
-<h1>Ratan & Apurva</h1><p>Tap below to begin</p>
-<button onclick="show('scratch')">Begin Experience</button>
+
+<!-- WELCOME -->
+
+<section id="welcome" class="screen active">
+
+<div class="monogram">
+<div>R</div>
+<div class="amp">&</div>
+<div>A</div>
+</div>
+
+<button id="openBtn">
+Open Invitation
+</button>
+
 </section>
 
-<section id="scratch" class="screen hidden center">
-<h2>Reveal</h2><p>Scratch to discover the date</p>
-<div class="date">19 June 2026</div>
-<button onclick="show('invite')">Continue</button>
+<!-- SCRATCH -->
+
+<section id="scratch" class="screen">
+
+<h2>Reveal The Date</h2>
+
+<div class="scratch-wrapper">
+
+<div class="scratch-card">
+<div class="hidden-text">19</div>
+<canvas></canvas>
+</div>
+
+<div class="scratch-card">
+<div class="hidden-text">JUNE</div>
+<canvas></canvas>
+</div>
+
+<div class="scratch-card">
+<div class="hidden-text">2026</div>
+<canvas></canvas>
+</div>
+
+</div>
+
 </section>
 
-<section id="invite" class="screen hidden center">
-<div class="curtain left"></div><div class="curtain right"></div>
-<h2>Together with their families</h2>
-<h1>Ratan & Apurva</h1>
-<p>request the pleasure of your company</p>
-<button onclick="openCurtain()">Open Invitation</button>
-<button onclick="show('countdown')">Next</button>
+<!-- CURTAIN -->
+
+<section id="curtainScreen" class="screen">
+
+<div class="curtain left"></div>
+<div class="curtain right"></div>
+
+<div class="couple-name">
+<h1>Ratan</h1>
+<span>&</span>
+<h1>Apurva</h1>
+</div>
+
 </section>
 
-<section id="countdown" class="screen hidden center">
-<h2>Countdown</h2>
-<div id="cd"></div>
-<button onclick="show('haldi')">Next</button>
+<!-- INVITATION -->
+
+<section id="invitation" class="screen">
+
+<h2>
+With the blessings of Lord Ganesha
+</h2>
+
+<p>
+Together with our families,
+we invite you to celebrate
+our wedding ceremony.
+</p>
+
+<button>
+Continue
+</button>
+
 </section>
 
-<section id="haldi" class="screen hidden center">
-<h2>Pre‑Wedding Celebration</h2>
-<p>18 June 2026 • Evening</p>
-<a href="https://maps.app.goo.gl/J47BqnxoFqXGZL2NA?g_st=ic">View Location</a>
-<button onclick="show('wedding')">Next</button>
-</section>
-
-<section id="wedding" class="screen hidden center">
-<h2>Wedding Ceremony</h2>
-<p>19 June 2026 • 12:28 PM</p>
-<a href="https://maps.app.goo.gl/J47BqnxoFqXGZL2NA?g_st=ic">View Location</a>
-<button onclick="show('venue')">Next</button>
-</section>
-
-<section id="venue" class="screen hidden center">
-<h2>The Celebration Will Take Place At</h2>
-<div class="sketch">🏛️</div>
-<h3>Satyavijay Convention Multipurpose Hall</h3>
-<p>Solapur, Maharashtra</p>
-<button onclick="show('thanks')">Next</button>
-</section>
-
-<section id="thanks" class="screen hidden center">
-<h2>Thank You</h2>
-<p>Your presence and blessings will make our celebration complete.</p>
-</section>
 <script src="script.js"></script>
-</body></html>
+
+</body>
+</html>
