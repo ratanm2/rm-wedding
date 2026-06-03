@@ -56,12 +56,12 @@ if(revealed) return;
 ctx.globalCompositeOperation = "destination-out";
 
 ctx.beginPath();
-ctx.arc(x,y,12,0,Math.PI * 2);
+ctx.arc(x,y,25,0,Math.PI * 2);
 ctx.fill();
 
 scratchCount++;
 
-if(scratchCount > 60){
+if(scratchCount > 15){
 
 revealed = true;
 
