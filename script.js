@@ -9,14 +9,14 @@ function showScreen(screen){
 
 document
 .querySelectorAll(".screen")
-.forEach(s=>s.classList.remove("active"));
+.forEach(s => s.classList.remove("active"));
 
 screen.classList.add("active");
 }
 
 document
 .getElementById("openBtn")
-.addEventListener("click",()=>{
+.addEventListener("click", () => {
 
 showScreen(screens.scratch);
 
@@ -24,12 +24,16 @@ initScratch();
 });
 
 let completed = 0;
+let initialized = false;
 
 function initScratch(){
 
+if(initialized) return;
+initialized = true;
+
 document
 .querySelectorAll("canvas")
-.forEach(canvas=>{
+.forEach(canvas => {
 
 const ctx = canvas.getContext("2d");
 
@@ -37,45 +41,63 @@ canvas.width = 100;
 canvas.height = 100;
 
 ctx.fillStyle = "#C6A664";
+
 ctx.beginPath();
-ctx.arc(50,50,50,0,Math.PI*2);
+ctx.arc(50,50,50,0,Math.PI * 2);
 ctx.fill();
 
-let scratchCount=0;
+let scratchCount = 0;
+let revealed = false;
 
 function scratch(x,y){
 
-ctx.globalCompositeOperation =
-"destination-out";
+if(revealed) return;
+
+ctx.globalCompositeOperation = "destination-out";
 
 ctx.beginPath();
-ctx.arc(x,y,12,0,Math.PI*2);
+ctx.arc(x,y,12,0,Math.PI * 2);
 ctx.fill();
 
 scratchCount++;
 
-if(scratchCount>40){
+if(scratchCount > 60){
 
-canvas.style.display="none";
+revealed = true;
+
+canvas.style.transition = "all .5s ease";
+canvas.style.opacity = "0";
+canvas.style.transform = "scale(.8)";
+
+setTimeout(()=>{
+canvas.style.display = "none";
+},500);
 
 completed++;
 
-if(completed===3){
+console.log("Completed:", completed);
 
-setTimeout(openCurtains,1000);
+if(completed === 3){
+
+setTimeout(()=>{
+
+openCurtains();
+
+},1000);
+
 }
 }
 }
 
 canvas.addEventListener("mousemove",e=>{
 
-if(e.buttons!==1)return;
+if(e.buttons !== 1) return;
 
-const rect=canvas.getBoundingClientRect();
+const rect = canvas.getBoundingClientRect();
 
 scratch(
-e.clientX-rect.left,
-e.clientY-rect.top
+e.clientX - rect.left,
+e.clientY - rect.top
 );
 
 });
@@ -84,17 +106,19 @@ canvas.addEventListener("touchmove",e=>{
 
 e.preventDefault();
 
-const t=e.touches[0];
+const t = e.touches[0];
 
-const rect=canvas.getBoundingClientRect();
+const rect = canvas.getBoundingClientRect();
 
 scratch(
-t.clientX-rect.left,
-t.clientY-rect.top
+t.clientX - rect.left,
+t.clientY - rect.top
 );
 
+},{passive:false});
+
 });
-});
+
 }
 
 function openCurtains(){
@@ -114,7 +138,8 @@ left.animate(
 ],
 {
 duration:2000,
-fill:"forwards"
+fill:"forwards",
+easing:"ease-in-out"
 }
 );
 
@@ -125,7 +150,8 @@ right.animate(
 ],
 {
 duration:2000,
-fill:"forwards"
+fill:"forwards",
+easing:"ease-in-out"
 }
 );
 
