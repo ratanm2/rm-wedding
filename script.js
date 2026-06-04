@@ -5,7 +5,7 @@ curtain: document.getElementById("curtainScreen"),
 invite: document.getElementById("invitation")
 };
 
-function showScreen(screen) {
+function showScreen(screen){
 
 document
 .querySelectorAll(".screen")
@@ -26,9 +26,9 @@ initScratch();
 let completed = 0;
 let initialized = false;
 
-function initScratch() {
+function initScratch(){
 
-if (initialized) return;
+if(initialized) return;
 initialized = true;
 
 document
@@ -43,145 +43,87 @@ canvas.height = 100;
 ctx.fillStyle = "#C6A664";
 
 ctx.beginPath();
-ctx.arc(50, 50, 50, 0, Math.PI * 2);
+ctx.arc(50,50,50,0,Math.PI * 2);
 ctx.fill();
 
+let scratchCount = 0;
 let revealed = false;
 
-function revealCircle() {
+function scratch(x,y){
 
-if (revealed) return;
+if(revealed) return;
+
+ctx.globalCompositeOperation = "destination-out";
+
+ctx.beginPath();
+ctx.arc(x,y,12,0,Math.PI * 2);
+ctx.arc(x,y,25,0,Math.PI * 2);
+ctx.fill();
+
+scratchCount++;
+
+if(scratchCount > 60){
+if(scratchCount > 15){
 
 revealed = true;
 
-canvas.style.transition =
-"all .6s ease";
-
+canvas.style.transition = "all .5s ease";
 canvas.style.opacity = "0";
+canvas.style.transform = "scale(.8)";
 
-canvas.style.transform =
-"scale(.8)";
-
-setTimeout(() => {
+setTimeout(()=>{
 canvas.style.display = "none";
-}, 600);
+},500);
 
 completed++;
 
-console.log(
-"Completed Circles:",
-completed
-);
+console.log("Completed:", completed);
 
-if (completed === 3) {
+if(completed === 3){
 
-setTimeout(() => {
+setTimeout(()=>{
 
 openCurtains();
 
-}, 1000);
+},1000);
 
 }
 }
-
-function checkReveal() {
-
-const pixels = ctx.getImageData(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-let transparent = 0;
-
-for (
-let i = 3;
-i < pixels.data.length;
-i += 4
-) {
-
-if (pixels.data[i] === 0) {
-transparent++;
 }
 
-}
+canvas.addEventListener("mousemove",e=>{
 
-const percent =
-transparent /
-(canvas.width * canvas.height);
+if(e.buttons !== 1) return;
 
-if (percent > 0.35) {
-
-revealCircle();
-
-}
-}
-
-function scratch(x, y) {
-
-if (revealed) return;
-
-ctx.globalCompositeOperation =
-"destination-out";
-
-ctx.beginPath();
-
-ctx.arc(
-x,
-y,
-30,
-0,
-Math.PI * 2
-);
-
-ctx.fill();
-
-checkReveal();
-}
-
-canvas.addEventListener(
-"mousemove",
-e => {
-
-if (e.buttons !== 1) return;
-
-const rect =
-canvas.getBoundingClientRect();
+const rect = canvas.getBoundingClientRect();
 
 scratch(
 e.clientX - rect.left,
 e.clientY - rect.top
 );
 
-}
-);
+});
 
-canvas.addEventListener(
-"touchmove",
-e => {
+canvas.addEventListener("touchmove",e=>{
 
 e.preventDefault();
 
-const touch =
-e.touches[0];
+const t = e.touches[0];
 
-const rect =
-canvas.getBoundingClientRect();
+const rect = canvas.getBoundingClientRect();
 
 scratch(
-touch.clientX - rect.left,
-touch.clientY - rect.top
+t.clientX - rect.left,
+t.clientY - rect.top
 );
 
-},
-{ passive: false }
-);
+},{passive:false});
 
 });
+
 }
 
-function openCurtains() {
+function openCurtains(){
 
 showScreen(screens.curtain);
 
@@ -193,39 +135,31 @@ document.querySelector(".right");
 
 left.animate(
 [
-{
-transform: "translateX(0)"
-},
-{
-transform: "translateX(-100%)"
-}
+{transform:"translateX(0)"},
+{transform:"translateX(-100%)"}
 ],
 {
-duration: 2200,
-fill: "forwards",
-easing: "ease-in-out"
+duration:2000,
+fill:"forwards",
+easing:"ease-in-out"
 }
 );
 
 right.animate(
 [
-{
-transform: "translateX(0)"
-},
-{
-transform: "translateX(100%)"
-}
+{transform:"translateX(0)"},
+{transform:"translateX(100%)"}
 ],
 {
-duration: 2200,
-fill: "forwards",
-easing: "ease-in-out"
+duration:2000,
+fill:"forwards",
+easing:"ease-in-out"
 }
 );
 
-setTimeout(() => {
+setTimeout(()=>{
 
 showScreen(screens.invite);
 
-}, 3200);
+},3000);
 }
